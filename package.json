@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "start": "tailwind -i ./wwwroot/css/tailwind.css -o ./wwwroot/css/tailwind.generated.css"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.4"
+  }
+}

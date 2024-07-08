@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://unpkg.com/htmx.org@2.0.0"></script>
+    <link rel="stylesheet" href="/css/tailwind.generated.css" />
+    <title>@ViewData["Title"]</title>
+</head>
+
+<body>
+    <!-- Preserve focus on preserved elements after htmx swap -->
+    <script>
+        htmx.config.defaultSwapStyle = "outerHTML";
+        document.body.addEventListener('htmx:beforeRequest', function (evt) {
+            const preserved = evt.detail.elt.attributes.getNamedItem("hx-preserve") !== null;
+            const focused = evt.detail.elt === document.activeElement;
+
+            const inner = evt.detail.xhr.onload;
+            evt.detail.xhr.onload = () => {
+                inner();
+                evt.detail.elt.focus();
+            };
+        });
+    </script>
+    @RenderBody()
+</body>
+
+</html>
