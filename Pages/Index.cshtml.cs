@@ -6,11 +6,7 @@ namespace Server.Pages
 {
   public class IndexModel : PageModel
   {
-    public string? Target { get; private set; } = null;
     public SearchTableModel SearchTableModel { get; private set; } = new();
-
-    // TODO: example of passing request validation data into response
-    // Can we leverage annotation based model validation?
 
     public ActionResult OnGet(string query)
     {
@@ -21,16 +17,15 @@ namespace Server.Pages
           .Where(n => n.ToLower().Contains(query.ToLower()))
           .ToList();
       }
-      names = names.Take(5);
 
-      Target = Request.Headers["Hx-Target"];
       SearchTableModel = new SearchTableModel()
       {
-        Names = names,
-        DefaultQuery = query
+        Names = names.Take(5),
+        Query = query
       };
 
-      switch (Target)
+      var target = Request.Headers["Hx-Target"];
+      switch (target)
       {
         case "search-template-root":
           return SearchTableModel.Render(this);
