@@ -9,6 +9,9 @@ namespace Server.Pages
     public string? Target { get; private set; } = null;
     public SearchTableModel SearchTableModel { get; private set; } = new();
 
+    // TODO: example of passing request validation data into response
+    // Can we leverage annotation based model validation?
+
     public ActionResult OnGet(string query)
     {
       var names = TestAccounts.Select(t => $"{t.FirstName} {t.LastName}");
@@ -30,7 +33,7 @@ namespace Server.Pages
       switch (Target)
       {
         case "search-template-root":
-          return Partial("~/Pages/Shared/_SearchTable.cshtml", SearchTableModel);
+          return SearchTableModel.Render(this);
         default:
           return Page();
       }
