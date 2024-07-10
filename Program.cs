@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Server.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
@@ -18,5 +21,7 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
+
+app.CheckPartialPaths();
 
 app.Run();
