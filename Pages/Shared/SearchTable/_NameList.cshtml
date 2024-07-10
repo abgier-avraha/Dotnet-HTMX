@@ -1,0 +1,27 @@
+@namespace Server.Pages.Shared.SearchTable
+@model Pages.Shared.SearchTable.NameListModel
+
+
+<div id="name-list-root" class="flow-root">
+	<ul role="list" class="divide-y divide-gray-200">
+		@foreach (var item in Model.Names)
+		{
+			<li class="py-3 sm:py-4">
+				<div class="flex items-center space-x-4">
+					<div class="flex-shrink-0">
+						<img class="w-8 h-8 rounded-full"
+							src="https://icons.veryicon.com/png/o/miscellaneous/standard/avatar-15.png" />
+					</div>
+					<div class="flex-1 min-w-0">
+						<p class="text-sm font-medium text-gray-900 truncate ">
+							@item
+						</p>
+						<p class="text-sm text-gray-500 truncate ">
+							sample@gmail.com
+						</p>
+					</div>
+				</div>
+			</li>
+		}
+	</ul>
+</div>

@@ -1,12 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Server.Pages.Shared;
+using Server.Extensions;
+using Server.Pages.Shared.SearchTable;
 
 namespace Server.Pages
 {
   public class IndexModel : PageModel
   {
-    public SearchTableModel SearchTableModel { get; private set; } = new();
+    public SearchTableModel SearchTable { get; private set; } = new();
 
     public ActionResult OnGet(string query)
     {
@@ -18,17 +19,21 @@ namespace Server.Pages
           .ToList();
       }
 
-      SearchTableModel = new SearchTableModel()
+      SearchTable = new SearchTableModel()
       {
-        Names = names.Take(5),
+        NamesList = new NameListModel()
+        {
+          Id = "name-list-root",
+          Names = names.Take(5),
+        },
         Query = query
       };
 
       var target = Request.Headers["Hx-Target"];
       switch (target)
       {
-        case "search-template-root":
-          return SearchTableModel.Render(this);
+        case "name-list-root":
+          return SearchTable.NamesList.Render(this);
         default:
           return Page();
       }

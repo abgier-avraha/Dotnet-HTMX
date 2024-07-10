@@ -1,10 +1,13 @@
 ﻿@page
 @namespace Server.Pages
 @model IndexModel
+@using Server.Pages.Shared.SearchTable;
+@using Server.Extensions;
+
 @{
   Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
 <div class="max-w-2xl my-4 mx-auto">
-  @await Html.PartialAsync("~/Pages/Shared/_SearchTable.cshtml", Model.SearchTableModel)
+  @await Model.SearchTable.RenderAsync(Html)
 </div>
