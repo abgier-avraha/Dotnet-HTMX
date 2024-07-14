@@ -2,7 +2,7 @@
 @model Pages.Shared.SearchTable.NameListModel
 
 
-<div id="name-list-root" class="flow-root">
+<div id="@Model.Id" class="flow-root">
 	<ul role="list" class="divide-y divide-gray-200">
 		@foreach (var item in Model.Names)
 		{

@@ -6,10 +6,11 @@ namespace Server.Pages.Shared.SearchTable
   {
     public static string Path => "~/Pages/Shared/SearchTable/_SearchTable.cshtml";
     public string Query { get; set; } = "";
-    public NameListModel NamesList { get; set; } = new NameListModel()
+    public NameListModel NamesList { get; set; } = new NameListModel();
+
+    public async Task LoadAsync()
     {
-      Id = "",
-      Names = []
-    };
+      await NamesList.LoadAsync(Query);
+    }
   }
 }

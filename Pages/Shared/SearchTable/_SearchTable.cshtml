@@ -9,7 +9,7 @@
 		<form method="get" action="/" class="flex items-center">
 			<input id="query" name="query" type="text"
 				class="title bg-gray-100 border border-gray-300 p-2 outline-none rounded-md mr-2 w-full" placeholder="Search..."
-				value="@Model.Query" hx-trigger="keyup changed delay:100ms" hx-preserve hx-get="/"
+				value="@Model.Query" hx-trigger="keyup changed delay:250ms" hx-preserve hx-get="/"
 				hx-target="#@Model.NamesList.Id" hx-push-url="true" />
 			<input type="submit" class="px-3 py-2 bg-indigo-500 text-white rounded-md" />
 		</form>
